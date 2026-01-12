@@ -247,6 +247,8 @@
                             <span class="badge bg-info">معلم</span>
                         @elseif($report->user->role->role_name == 'Head')
                             <span class="badge bg-warning">رئيس قسم</span>
+                        @elseif($report->user->role->role_name == 'Doctor')
+                            <span class="badge bg-success">دكتور</span>
                         @else
                             <span class="badge bg-secondary">{{ $report->user->role->role_name }}</span>
                         @endif

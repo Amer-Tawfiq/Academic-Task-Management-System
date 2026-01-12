@@ -10,9 +10,32 @@ use App\Http\Controllers\{
     TeacherController,
     NotificationController,
     SettingsController,
-    DeanReportController  // ← إضافة الـ Controller الجديد
+    DeanReportController
 };
+use App\Models\Task;
+use App\Models\Course;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+// ... inside the route ...
+// I can't replace the whole file or huge chunks just to add an use statement at top and variable in middle.
+// I will use multi_replace for this. This tool call is incorrect for non-contiguous changes.
+// Retracting and using multi_replace.
+
 
 /*
 |--------------------------------------------------------------------------
@@ -139,7 +162,8 @@ Route::middleware(['auth'])->group(function () {
             
             // الدورات
             Route::get('/courses', function () {
-                return view('dean.courses');
+                $courses = Course::with('teacher')->withCount('students')->get();
+                return view('dean.courses', compact('courses'));
             })->name('courses');
             
             // المهام
@@ -156,16 +180,24 @@ Route::middleware(['auth'])->group(function () {
                         ->latest()
                         ->get();
             
+            // جلب المقررات للفلترة
+            $courses = Course::all();
+
             return view('tasks.index', [
-                'tasks' => $tasks,  // ← أضف هذا
+                'tasks' => $tasks,
+                'courses' => $courses,
                 'userType' => 'dean',
-                'pageTitle' => 'المهام - عميد الكلية'
+                'pageTitle' => 'المهام - عميد الكلية',
+                'layout' => 'layouts.app'
             ]);
         })->name('tasks');
             
             // الحضور
             Route::get('/attendance', function () {
-                return view('dean.attendance');
+                $departments = App\Models\Department::withCount('users')->get();
+                $courses = App\Models\Course::select('id', 'course_name', 'department_id')->get();
+                
+                return view('dean.attendance', compact('departments', 'courses'));
             })->name('attendance');
             
             // تقارير العميد

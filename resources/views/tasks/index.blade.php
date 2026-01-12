@@ -1,4 +1,10 @@
-@extends('layouts.dashboard')
+@php
+    // تحديد الـ Layout بناءً على دور المستخدم
+    $userRole = auth()->user()->role->role_name;
+    $layout = $userRole == 'Dean' ? 'layouts.dean' : 'layouts.dashboard';
+@endphp
+
+@extends($layout)
 
 @section('content')
 <style>

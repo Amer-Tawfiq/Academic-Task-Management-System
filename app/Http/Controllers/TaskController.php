@@ -22,8 +22,9 @@ class TaskController extends Controller
             ->get();
 
         $courses = Course::all();
+        $layout = 'layouts.dashboard';
 
-        return view('tasks.index', compact('tasks', 'courses'));
+        return view('tasks.index', compact('tasks', 'courses', 'layout'));
     }
 
     public function store(Request $request)

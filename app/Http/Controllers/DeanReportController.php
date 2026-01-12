@@ -57,14 +57,14 @@ class DeanReportController extends Controller
         if ($userRole == 'Head') {
             $users = User::where('department_id', $user->department_id)
                 ->whereHas('role', function($q) {
-                    $q->where('role_name', 'Teacher');
+                    $q->whereIn('role_name', ['Teacher', 'Doctor']); // Added Doctor
                 })
                 ->get();
             $layout = 'layouts.dashboard';
         } else {
-            // العميد يرى المعلمين ورؤساء الأقسام
+            // العميد يرى المعلمين ورؤساء الأقسام والدكاترة
             $users = User::whereHas('role', function($q) {
-                $q->whereIn('role_name', ['Teacher', 'Head']);
+                $q->whereIn('role_name', ['Teacher', 'Head', 'Doctor']); // Added Doctor
             })->get();
             $layout = 'layouts.dean';
         }
@@ -86,13 +86,13 @@ class DeanReportController extends Controller
         if ($userRole == 'Head') {
             $users = User::where('department_id', $user->department_id)
                 ->whereHas('role', function($q) {
-                    $q->where('role_name', 'Teacher');
+                    $q->whereIn('role_name', ['Teacher', 'Doctor']);
                 })
                 ->get();
             $layout = 'layouts.dashboard';
         } else {
             $users = User::whereHas('role', function($q) {
-                $q->whereIn('role_name', ['Teacher', 'Head']);
+                $q->whereIn('role_name', ['Teacher', 'Head', 'Doctor']);
             })->get();
             $layout = 'layouts.dean';
         }
