@@ -8,7 +8,7 @@ class Attendance extends Model
 {
     protected $table = 'attendance';
 
-    protected $fillable = ['student_id', 'course_id', 'week', 'status'];
+    protected $fillable = ['student_id', 'course_id', 'week', 'day', 'status'];
 
     public function student()
     {
@@ -20,4 +20,3 @@ class Attendance extends Model
         return $this->belongsTo(Course::class);
     }
 }
-

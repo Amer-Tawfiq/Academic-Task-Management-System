@@ -65,4 +65,32 @@ class TaskController extends Controller
 
         return back()->with('success', 'تم تحديث حالة المهمة');
     }
+     public function teacherTasks()
+    {
+        $user = Auth::user();
+        
+        // الحصول على مقررات المعلم
+        $teacherCourses = Course::where('teacher_id', $user->id)->get();
+        
+        // الحصول على المهام الخاصة بمقررات المعلم
+        $tasks = Task::whereIn('course_id', $teacherCourses->pluck('id'))
+            ->with(['course', 'user'])
+            ->orderBy('due_date', 'asc')
+            ->get();
+        
+        return view('teacher.tasks', compact('tasks', 'teacherCourses'));
+    }
+    public function complete(Task $task)
+{
+    // فقط إذا لم تكن مكتملة
+    if ($task->status !== 'completed') {
+        $task->update([
+            'status' => 'completed',
+            'completed_at' => now(),
+        ]);
+    }
+
+    return redirect()->back()->with('success', 'تم تحويل المهمة إلى مكتملة ✅');
+}
+
 }

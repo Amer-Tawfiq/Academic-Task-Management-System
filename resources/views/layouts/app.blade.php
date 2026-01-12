@@ -412,23 +412,28 @@
                         <i class="fas fa-chart-line"></i>
                         <span>لوحة التحكم</span>
                     </a>
-                    <a href="/courses">
+                    <a href="{{ route('dean.courses') }}" 
+                       class="{{ request()->routeIs('dean.courses') ? 'active' : '' }}">
                         <i class="fas fa-graduation-cap"></i>
                         <span>الدورات</span>
                     </a>
-                    <a href="/tasks">
+                    <a href="{{ route('dean.tasks') }}" 
+                       class="{{ request()->routeIs('dean.tasks') ? 'active' : '' }}">
                         <i class="fas fa-tasks"></i>
                         <span>المهام</span>
                     </a>
-                    <a href="/attendance">
+                    <a href="{{ route('dean.attendance') }}" 
+                       class="{{ request()->routeIs('dean.attendance') ? 'active' : '' }}">
                         <i class="fas fa-user-check"></i>
                         <span>الحضور</span>
                     </a>
-                    <a href="/reports">
+                    <a href="{{ route('dean.reports.index') }}" 
+                       class="{{ request()->routeIs('dean.reports.*') ? 'active' : '' }}">
                         <i class="fas fa-file-alt"></i>
                         <span>التقارير</span>
                     </a>
-                    <a href="/settings">
+                    <a href="{{ route('dean.settings') }}" 
+                       class="{{ request()->routeIs('dean.settings') ? 'active' : '' }}">
                         <i class="fas fa-cog"></i>
                         <span>الإعدادات</span>
                     </a>

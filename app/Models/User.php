@@ -27,13 +27,28 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id', 
-        'department_id'
+        'department_id',
+        'image',
     ];
 
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
+    // في App\Models\User.php
+public function getImageUrlAttribute()
+{
+    if ($this->image && file_exists(public_path('images/' . $this->image))) {
+        return asset('images/' . $this->image);
+    }
+    
+    return asset('images/avatar.png');
+}
+
+public function getHasImageAttribute()
+{
+    return $this->image && file_exists(public_path('images/' . $this->image));
+}
 
     public function department()
     {

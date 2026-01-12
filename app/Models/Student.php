@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['name', 'university_id', 'department_id', 'level'];
+    protected $fillable = [
+        'name',
+        'university_name',
+        'department_id',
+        'level'
+    ];
 
     public function department()
     {
@@ -33,4 +38,3 @@ class Student extends Model
         return $this->hasMany(Deprivation::class);
     }
 }
-

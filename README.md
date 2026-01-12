@@ -57,3 +57,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Academic Task Management System
+
+An academic task management system designed for university faculty members.
+The system supports three user roles:
+
+- **Dean**: Oversees academic tasks and monitors overall performance.
+- **Head of Department**: Manages and assigns tasks within the department.
+- **Professor**: Views and completes assigned academic tasks.
+
+The system aims to improve task organization, communication, and accountability within academic institutions.

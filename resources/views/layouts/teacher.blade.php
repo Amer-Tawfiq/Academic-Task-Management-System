@@ -8,7 +8,8 @@
     <!-- روابط CDN للخطوط والأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    @yield('styles')
+
     <style>
         /* ===== إعادة تعيين وإعدادات عامة ===== */
         * {
@@ -296,8 +297,15 @@
             <!-- الملف الشخصي -->
             <div class="profile">
                 <div class="profile-img">
-                    <img src="{{ asset('images/avatar.png') }}" alt="صورة المعلم">
-                </div>
+                    @php
+                        $user = auth()->user();
+                        $imagePath = 'images/' . ($user->image ?: 'avatar.png');
+                        $fullPath = public_path($imagePath);
+                    @endphp
+
+<img src="{{ $user->image && file_exists($fullPath) ? asset('images/' . $user->image) : asset('images/avatar.png') }}" 
+                         alt="صورة المعلم">
+                                        </div>
                 <h4>{{ auth()->user()->name }}</h4>
                 <!-- <span> عضو هيئة التدريس</span> -->
             </div>
@@ -308,19 +316,19 @@
                     <i class="fas fa-chart-line"></i>
                     <span>لوحة التحكم</span>
                 </a>
-                <a href="/teatcher-profile">
+                 <a href="{{ route('teacher.profile') }}" class="{{ request()->routeIs('teacher.profile') ? 'active' : '' }}">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>عضو هيئة التدريس</span>
                 </a>
-                <a href="/tasks">
+                 <a href="{{ route('teacher.tasks') }}" class="{{ request()->routeIs('teacher.tasks') ? 'active' : '' }}">
                     <i class="fas fa-tasks"></i>
                     <span>المهام</span>
                 </a>
-                <a href="/teacher/attendance">
+                <a href="{{ route('teacher.attendance') }}" class="{{ request()->routeIs('teacher.attendance') ? 'active' : '' }}">
                     <i class="fas fa-user-check"></i>
                     <span>الحضور</span>
                 </a>
-                <a href="/teacher/reports">
+                <a href="/dashboard-teacher-report">
                     <i class="fas fa-file-alt"></i>
                     <span>التقارير</span>
                 </a>

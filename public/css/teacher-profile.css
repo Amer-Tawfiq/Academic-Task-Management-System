@@ -1,0 +1,310 @@
+/* public/css/teacher-profile.css */
+
+/* ===== الأنماط العامة للملف الشخصي ===== */
+.profile-container {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #f6f8fc 0%, #eef2ff 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.profile-header-section {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.profile-header-section h1 {
+    color: #1e293b;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.profile-header-section p {
+    color: #64748b;
+    font-size: 18px;
+}
+
+/* ===== بطاقة الملف الشخصي ===== */
+.profile-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* ===== رأس البطاقة ===== */
+.profile-card-header {
+    background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+    padding: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+/* ===== تفاصيل الملف ===== */
+.profile-details {
+    padding: 40px;
+}
+
+.detail-group {
+    margin-bottom: 30px;
+}
+
+.detail-group h3 {
+    color: #3b82f6;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.detail-item {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border-right: 4px solid #3b82f6;
+}
+
+.detail-item label {
+    display: block;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.detail-item .value {
+    font-size: 18px;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* ===== الأزرار والإجراءات ===== */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 30px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.profile-btn {
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.profile-btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.profile-btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+
+.profile-btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.profile-btn-secondary:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+/* ===== أنماط خاصة بصفحة التعديل ===== */
+.profile-form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.profile-form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.profile-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.profile-select {
+    cursor: pointer;
+}
+
+.profile-error-message {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ===== رفع الصور ===== */
+.profile-image-upload {
+    margin-top: 15px;
+}
+
+.profile-file-input-label {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.profile-file-input-label:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.profile-file-input-label i {
+    margin-right: 8px;
+}
+
+.profile-file-input {
+    display: none;
+}
+
+.profile-upload-info {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ===== التنبيهات ===== */
+.profile-alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-alert-success {
+    background: #10b981;
+    color: white;
+}
+
+.profile-alert-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.profile-alert ul {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-right: 20px;
+}
+
+/* ===== القراءة فقط ===== */
+.profile-readonly-field {
+    background: #e2e8f0 !important;
+    color: #64748b !important;
+    cursor: not-allowed !important;
+}
+
+.profile-readonly-note {
+    color: #64748b;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* ===== التجاوب ===== */
+@media (max-width: 768px) {
+    .profile-card-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .detail-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+    
+    .profile-header-section h1 {
+        font-size: 24px;
+    }
+    
+    .profile-info h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-container {
+        padding: 10px;
+    }
+    
+    .profile-details {
+        padding: 20px;
+    }
+    
+    .profile-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

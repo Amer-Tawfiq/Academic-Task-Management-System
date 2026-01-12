@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ReportController extends Controller
 {
@@ -32,7 +34,7 @@ class ReportController extends Controller
                 $q->where('course_name','like','%'.$request->search.'%');
             });
 
-        $reports = $query->latest()->get();
+        $reports = $query->latest()->paginate(10);
         $courses = Course::all();
 
         return view('reports.index', compact('reports','courses'));
