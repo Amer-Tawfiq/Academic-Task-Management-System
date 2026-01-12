@@ -135,8 +135,11 @@ class AttendanceController extends Controller
     private function getCurrentWeek()
     {
         // يمكنك تعديل هذا بناءً على بداية الفصل الدراسي
-        $semesterStart = now()->startOfYear(); // أو تاريخ بداية الفصل
-        $currentWeek = now()->diffInWeeks($semesterStart) + 1;
+        // نفترض بداية الفصل قبل أسبوعين تقريباً من الآن للتجربة، أو نستخدم بداية العام
+        $semesterStart = now()->startOfYear(); 
+        
+        // استخدام abs لضمان قيمة موجبة، و (int) لضمان رقم صحيح
+        $currentWeek = (int) abs(now()->diffInWeeks($semesterStart)) + 1;
         
         return $currentWeek;
     }

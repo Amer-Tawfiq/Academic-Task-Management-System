@@ -279,7 +279,6 @@
         height: 100%;
         background: rgba(255, 255, 255, 0.9);
         z-index: 100;
-        display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 12px;
