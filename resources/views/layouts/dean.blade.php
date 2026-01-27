@@ -412,11 +412,11 @@
                         <i class="fas fa-chart-line"></i>
                         <span>لوحة التحكم</span>
                     </a>
-                    <a href="{{ route('dean.courses') }}" 
+                    <!-- <a href="{{ route('dean.courses') }}" 
                        class="{{ request()->routeIs('dean.courses') ? 'active' : '' }}">
                         <i class="fas fa-graduation-cap"></i>
                         <span>الدورات</span>
-                    </a>
+                    </a> -->
                     <a href="{{ route('dean.tasks') }}" 
                        class="{{ request()->routeIs('dean.tasks') ? 'active' : '' }}">
                         <i class="fas fa-tasks"></i>

@@ -332,6 +332,12 @@
                     <i class="fas fa-file-alt"></i>
                     <span>التقارير</span>
                 </a>
+                <!-- في سايدبار المعلم -->
+<a href="{{ route('teacher.notifications.index') }}" 
+   class="{{ request()->routeIs('teacher.notifications.*') ? 'active' : '' }}">
+    <i class="fas fa-bell"></i>
+    <span>الإشعارات</span>
+</a>
             </div>
             
             <!-- تسجيل الخروج -->

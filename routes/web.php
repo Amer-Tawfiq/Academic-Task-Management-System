@@ -127,16 +127,50 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{teacher}/details', [TeacherController::class, 'details'])->name('details');
         });
 
-    /* ================= Notifications ================= */
-    Route::prefix('notifications')
-        ->name('notifications.')
-        ->group(function () {
-            Route::get('/', [NotificationController::class, 'index'])->name('index');
-            Route::post('/', [NotificationController::class, 'store'])->name('store');
-            Route::delete('/{notification}', [NotificationController::class, 'destroy'])->name('destroy');
-            Route::post('/{notification}/read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
-            Route::get('/stats', [NotificationController::class, 'stats'])->name('stats');
-        });
+   /* ================= Notifications ================= */
+Route::prefix('notifications')
+    ->name('notifications.')
+    ->group(function () {
+        Route::get('/', [NotificationController::class, 'index'])->name('index');
+        Route::post('/', [NotificationController::class, 'store'])->name('store');
+        Route::delete('/{notification}', [NotificationController::class, 'destroy'])->name('destroy');
+        Route::post('/{notification}/read', [NotificationController::class, 'markAsRead'])->name('markAsRead');
+        Route::get('/stats', [NotificationController::class, 'stats'])->name('stats');
+        Route::get('/{notification}', [NotificationController::class, 'show'])->name('show');
+    });
+
+/* ================= Teacher Notifications ================= */
+Route::prefix('teacher')
+    ->name('teacher.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/notifications', [NotificationController::class, 'teacherNotifications'])->name('notifications.index');
+        Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+        Route::delete('/notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+        Route::get('/notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+    });
+
+/* ================= Head of Department Notifications ================= */
+Route::prefix('head')
+    ->name('head.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/notifications', [NotificationController::class, 'headNotifications'])->name('notifications.index');
+        Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+        Route::delete('/notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+        Route::get('/notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+    });
+
+/* ================= Dean Notifications ================= */
+Route::prefix('dean')
+    ->name('dean.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('/notifications', [NotificationController::class, 'deanNotifications'])->name('notifications.index');
+        Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+        Route::delete('/notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+        Route::get('/notifications/{notification}', [NotificationController::class, 'show'])->name('notifications.show');
+    });
 
     /* ================= Settings ================= */
     Route::prefix('settings')

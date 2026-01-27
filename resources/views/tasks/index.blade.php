@@ -650,8 +650,8 @@
     <!-- رأس الصفحة -->
     <div class="page-header">
         <div>
-            <h1 class="page-title">مهام الطلاب</h1>
-            <div class="page-subtitle">إدارة المهام وتتبع إنجاز الطلاب</div>
+            <h1 class="page-title">مهام المعلم</h1>
+            <div class="page-subtitle">إدارة المهام وتتبع الانجاز </div>
         </div>
         <button class="btn btn-success" onclick="showAddTaskModal()">
             <i class="fas fa-plus"></i>
